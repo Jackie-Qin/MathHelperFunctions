@@ -78,8 +78,6 @@ def GaussianElimSPP():
 
     # back substitution
     backSub.reverse()
-    print(backSub)
-    print(matrix)
     res = [0] * rowNum
     res[backSub[0]] = matrix[backSub[0]][rowNum] / matrix[backSub[0]][rowNum - 1]
     for i in range(1, rowNum):
