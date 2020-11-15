@@ -31,16 +31,17 @@ def gaussianElim():
 
 
 def GaussianElimSPP():
+def GaussianElimSPP():
+    rowNum = 4
+    scaledVector = []
+    index = []
+    backSub = []
     matrix = [
         [0.4096, 0.1234, 0.3678, 0.2943, 0.4043],
         [0.2246, 0.3872, 0.4015, 0.1129, 0.1550],
         [0.3645, 0.1920, 0.3781, 0.0643, 0.4240],
         [0.1784, 0.4002, 0.2786, 0.3927, 0.2557],
     ]
-    rowNum = 4
-    scaledVector = []
-    index = []
-    backSub = []
 
     for i in range(rowNum):
         scaledVector.append(0)
@@ -85,5 +86,38 @@ def GaussianElimSPP():
         for k in range(i):
             temp -= matrix[backSub[i]][rowNum - k - 1] * res[rowNum - k - 1]
         res[rowNum - i - 1] = temp / matrix[backSub[i]][rowNum - i - 1]
+
+    print(res)
+
+
+def TriProcedure():
+    rowNum = 100
+    dia = 4
+    side = -1
+    headTailAns = -20
+    midAns = 40
+    matrix = np.zeros((rowNum, rowNum + 1))
+
+    # matrix setup
+    matrix[0][0], matrix[rowNum - 1][rowNum - 1] = dia, dia
+    matrix[0][1], matrix[rowNum - 1][rowNum - 2] = side, side
+    matrix[0][rowNum], matrix[rowNum - 1][rowNum] = headTailAns, headTailAns
+    for i in range(1, rowNum - 1):
+        matrix[i][i - 1], matrix[i][i + 1] = side, side
+        matrix[i][i] = dia
+        matrix[i][rowNum] = midAns
+
+    # Elimination
+    for i in range(1, rowNum):
+        divide = matrix[i][i - 1] / matrix[i - 1][i - 1]
+        for j in range(i - 1, i + 1):
+            matrix[i][j] -= matrix[i - 1][j] * divide
+        matrix[i][rowNum] -= matrix[i - 1][rowNum] * divide
+
+    # back substitution
+    res = [0] * rowNum
+    res[rowNum - 1] = matrix[rowNum - 1][rowNum] / matrix[rowNum - 1][rowNum - 1]
+    for i in range(rowNum - 2, -1, -1):
+        res[i] = (matrix[i][rowNum] - matrix[i][i + 1] * res[i + 1]) / matrix[i][i]
 
     print(res)
