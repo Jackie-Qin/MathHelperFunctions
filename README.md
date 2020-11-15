@@ -8,3 +8,4 @@ C++ file:
     
 Python file:
 - Naive Gaussian Elimination.
+- Gaussian Elimination with scaled partial pivoting
