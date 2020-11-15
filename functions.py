@@ -31,16 +31,16 @@ def gaussianElim():
 
 
 def GaussianElimSPP():
-    rowNum = 4
-    scaledVector = []
-    index = []
-    backSub = []
     matrix = [
         [0.4096, 0.1234, 0.3678, 0.2943, 0.4043],
         [0.2246, 0.3872, 0.4015, 0.1129, 0.1550],
         [0.3645, 0.1920, 0.3781, 0.0643, 0.4240],
         [0.1784, 0.4002, 0.2786, 0.3927, 0.2557],
     ]
+    rowNum = 4
+    scaledVector = []
+    index = []
+    backSub = []
 
     for i in range(rowNum):
         scaledVector.append(0)
