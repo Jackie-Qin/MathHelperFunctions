@@ -7,5 +7,6 @@ C++ file:
 - Find multiplication and exponential module
     
 Python file:
-- Naive Gaussian Elimination.
+- Naive Gaussian Elimination
 - Gaussian Elimination with scaled partial pivoting
+- TriDiagonal matrix solver
